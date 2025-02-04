@@ -40,7 +40,7 @@ show_in_routes:
   description: "Advanced users only: limit sidebar to the selected routes. <br/><br/>Examples: discovery.latest, discovery.unread, discovery.new, discovery.top, tag.show, \"c/category-slug\" (for categories), \"tag/sample-tag\" (for tags). <br/><br/>When empty, the sidebar is shown on all list routes."
   allow_any: true
   choices:
-  api_endpoint:
+api_endpoint:
   default: "https://api.example.com/endpoint"
   client: true
   placement_id:
