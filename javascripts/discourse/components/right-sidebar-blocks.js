@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { getOwner } from "@ember/application";
+import { ajax } from "discourse/lib/ajax";
 
 const componentNameOverrides = {
   // avoids name collision with core's custom-html component
@@ -29,6 +30,9 @@ export default class RightSidebarBlocks extends Component {
             block.parsedParams[p.name] = p.value;
           });
         }
+        if (block.campaign_id) {
+          block.handleClick = (event) => this.handleBlockClick(block, event);
+        }
         blocksArray.push(block);
       } else {
         // eslint-disable-next-line no-console
@@ -39,5 +43,37 @@ export default class RightSidebarBlocks extends Component {
     });
 
     this.blocks = blocksArray;
+  }
+  handleBlockClick(block, event) {
+    event.preventDefault(); 
+
+    const apiEndpoint = settings.api_endpoint;
+    if (!apiEndpoint) {
+      console.warn("API endpoint is not configured.");
+      window.open(event.target.href, "_blank"); 
+      return;
+    }
+
+    const payload = {
+      placementID: settings.placement_id,
+      campaignID: block.campaign_id,
+    };
+
+    ajax(apiEndpoint, {
+      method: "POST",
+      data: payload,
+      headers: {
+        "Content-Type": "application/json",
+        referrer: document.referrer,
+      },
+    })
+      .then(() => {
+        console.log("Analytics event sent successfully.");
+        window.open(event.target.href, "_blank"); 
+      })
+      .catch((error) => {
+        console.error("Error sending analytics event:", error);
+        window.open(event.target.href, "_blank"); 
+      });
   }
 }
