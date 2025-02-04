@@ -50,7 +50,8 @@ export default class RightSidebarBlocks extends Component {
     console.log(event)
     event.preventDefault(); 
 
-    const href = block.parsedParams.content;
+    const link = block.parsedParams.content;
+    const href = link.getAttribute("href");
     console.log(href)
     const apiEndpoint = settings.api_endpoint;
     if (!apiEndpoint || !block.campaign_id || !settings.placement_id) {
