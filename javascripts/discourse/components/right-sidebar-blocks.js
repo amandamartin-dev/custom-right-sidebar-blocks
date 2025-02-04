@@ -49,16 +49,12 @@ export default class RightSidebarBlocks extends Component {
     console.log(block)
     console.log(event)
     event.preventDefault(); 
-
-    const contentElement = document.createElement("div");
-    contentElement.innerHTML = block.parsedParams.content;
-    console.log(contentElement);
-    const href = contentElement.link;
-    console.log(href)
+    let anchorTag = event.target.closest("a");
+   console.log(anchorTag)
     const apiEndpoint = settings.api_endpoint;
     if (!apiEndpoint || !block.campaign_id || !settings.placement_id) {
       console.warn("check block configuration - missing required settings");
-      window.open(href, "_blank");
+      window.open(anchorTag.href, "_blank");
       return;
     }
 
@@ -77,11 +73,11 @@ export default class RightSidebarBlocks extends Component {
     })
       .then(() => {
         console.log("Analytics event sent successfully.");
-        window.open(href, "_blank");
+        window.open(anchorTag.href, "_blank");
       })
       .catch((error) => {
         console.error("Error sending analytics event:", error);
-        window.open(href, "_blank");
+        window.open(anchorTag.href, "_blank");
       });
   }
 }
