@@ -43,7 +43,7 @@ show_in_routes:
 api_endpoint:
   default: "https://api.example.com/endpoint"
   client: true
-  placement_id:
+placement_id:
   default: "right-side-blocks"
   client: true
   description: "Placement ID is required for analytics"
