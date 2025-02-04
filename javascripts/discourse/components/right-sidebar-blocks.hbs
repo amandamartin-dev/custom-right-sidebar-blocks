@@ -1,7 +1,7 @@
 <PluginOutlet @name="above-right-sidebar-blocks" />
 
 {{#each this.blocks as |block|}}
-  <div class={{block.classNames}} {{on "click" (fn this.handleBlockClick block)}}>
+  <div class={{block.classNames}} {{on "click" (fn this.handleBlockClick block) capture=true}}>
     {{component block.internalName params=block.parsedParams}}
   </div>
   <PluginOutlet
