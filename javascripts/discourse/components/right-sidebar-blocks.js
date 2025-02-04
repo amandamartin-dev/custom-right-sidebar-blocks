@@ -57,6 +57,7 @@ export default class RightSidebarBlocks extends Component {
 
   @action
   handleBlockClick(block, event) {
+    console.log(block)
     console.log(event)
     event.preventDefault(); 
 
