@@ -46,11 +46,10 @@ export default class RightSidebarBlocks extends Component {
 
   @action
   handleBlockClick(block, event) {
-    console.log(block)
-    console.log(event)
+   
     event.preventDefault(); 
     let anchorTag = event.target.closest("a");
-   console.log(anchorTag)
+
     const apiEndpoint = settings.api_endpoint;
     if (!apiEndpoint || !block.campaign_id || !settings.placement_id) {
       console.warn("check block configuration - missing required settings");
