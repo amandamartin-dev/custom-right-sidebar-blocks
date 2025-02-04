@@ -52,6 +52,7 @@ export default class RightSidebarBlocks extends Component {
 
     const contentElement = document.createElement("div");
     contentElement.innerHTML = block.parsedParams.content;
+    console.log(contentElement);
     const href = contentElement.link;
     console.log(href)
     const apiEndpoint = settings.api_endpoint;
