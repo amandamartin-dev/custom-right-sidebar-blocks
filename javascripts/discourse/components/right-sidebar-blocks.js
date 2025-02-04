@@ -43,12 +43,17 @@ export default class RightSidebarBlocks extends Component {
     this.blocks = blocksArray;
   }
   handleBlockClick(block, event) {
+    console.log(event)
     event.preventDefault(); 
 
     const apiEndpoint = settings.api_endpoint;
     if (!apiEndpoint || !block.campaign_id || !settings.placement_id) {
       console.warn("check block configuration - missing required settings");
-      window.open(event.target.href, "_blank"); 
+      const href = event.target.getAttribute('href'); 
+      if (href) {
+        const url = new URL(href);
+        this.router.transitionTo(url.pathname + url.search);
+      }
       return;
     }
 
@@ -67,11 +72,19 @@ export default class RightSidebarBlocks extends Component {
     })
       .then(() => {
         console.log("Analytics event sent successfully.");
-        window.open(event.target.href, "_blank"); 
+        const href = event.target.getAttribute('href'); 
+        if (href) {
+          const url = new URL(href);
+          this.router.transitionTo(url.pathname + url.search);
+        }
       })
       .catch((error) => {
         console.error("Error sending analytics event:", error);
-        window.open(event.target.href, "_blank"); 
+        const href = event.target.getAttribute('href'); 
+        if (href) {
+          const url = new URL(href);
+          this.router.transitionTo(url.pathname + url.search);
+        } 
       });
   }
 }
