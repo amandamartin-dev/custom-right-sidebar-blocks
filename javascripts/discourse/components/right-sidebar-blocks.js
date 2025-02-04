@@ -30,9 +30,7 @@ export default class RightSidebarBlocks extends Component {
             block.parsedParams[p.name] = p.value;
           });
         }
-        if (block.campaign_id) {
-          block.handleClick = (event) => this.handleBlockClick(block, event);
-        }
+        
         blocksArray.push(block);
       } else {
         // eslint-disable-next-line no-console
@@ -48,8 +46,8 @@ export default class RightSidebarBlocks extends Component {
     event.preventDefault(); 
 
     const apiEndpoint = settings.api_endpoint;
-    if (!apiEndpoint) {
-      console.warn("API endpoint is not configured.");
+    if (!apiEndpoint || !block.campaign_id || !settings.placement_id) {
+      console.warn("check block configuration - missing required settings");
       window.open(event.target.href, "_blank"); 
       return;
     }
