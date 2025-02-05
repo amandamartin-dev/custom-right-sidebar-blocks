@@ -12,7 +12,7 @@ blocks:
           },
           "campaign_id": {
             "type": "string",
-            "description": "Campaign ID for this block - only use for analytics blocks",
+            "description": "Campaign ID for this block - only use for analytics blocks"
           },
           "params": {
             "type": "array",
