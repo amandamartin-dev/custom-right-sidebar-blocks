@@ -1,7 +1,9 @@
 <PluginOutlet @name="above-right-sidebar-blocks" />
 
 {{#each this.blocks as |block|}}
-  <div class={{block.classNames}} {{on "click" (fn this.handleBlockClick block) capture=true}}>
+  <div class={{block.classNames}}  {{#if block.parsedParams.campaign_id}}
+         {{on "click" (fn this.handleBlockClick block) capture=true}}
+       {{/if}}>
     {{component block.internalName params=block.parsedParams}}
   </div>
   <PluginOutlet
