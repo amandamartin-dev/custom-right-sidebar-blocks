@@ -2,7 +2,7 @@
 
 {{#each this.blocks as |block|}}
 {{#if block.parsedParams.campaign_id}}
-  <div class={{block.classNames}}{{on "click" (fn this.handleBlockClick block) capture=true}}>
+  <div class={{block.classNames}} {{on "click" (fn this.handleBlockClick block) capture=true}}>
     {{component block.internalName params=block.parsedParams}}
   </div>
 {{else}}
