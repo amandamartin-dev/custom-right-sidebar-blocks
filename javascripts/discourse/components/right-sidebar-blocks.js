@@ -35,7 +35,7 @@ export default class RightSidebarBlocks extends Component {
         if (block.campaign_id) {
           block.parsedParams['campaign_id'] = block.campaign_id;
         }
-        console.log("Parsed Params for Block:", block.parsedParams);
+        
         blocksArray.push(block);
       } else {
         // eslint-disable-next-line no-console
