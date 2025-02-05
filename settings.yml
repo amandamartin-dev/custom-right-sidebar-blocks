@@ -10,9 +10,14 @@ blocks:
           "name": {
             "type": "string"
           },
+          "track_analytics": {
+            "type": "boolean",
+            "default": false,
+            "description": "Track analytics for this block"
+          },
           "campaign_id": {
             "type": "string",
-            "description": "Campaign ID for this block"
+            "description": "Campaign ID for this block - only use for analytics blocks"
           },
           "params": {
             "type": "array",
